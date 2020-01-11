@@ -120,6 +120,106 @@ if (isset($_GET['menu'])) {
             include 'module/user/tampil.php';
         }
         echo '</div>';
+    } elseif ($menu == 'wilayah') {
+        echo '<div class="panel panel-primary">';
+        if ($aksi == 'tambah') {
+            include 'module/wilayah/tambah.php';
+        } elseif ($aksi == 'edit') {
+            include 'module/wilayah/edit.php';
+        } else {
+            include 'module/wilayah/tampil.php';
+        }
+        echo '</div>';
+    } elseif ($menu == 'lokasi') {
+        echo '<div class="panel panel-primary">';
+        if ($aksi == 'tambah') {
+            include 'module/lokasi/tambah.php';
+        } elseif ($aksi == 'edit') {
+            include 'module/lokasi/edit.php';
+        } else {
+            include 'module/lokasi/tampil.php';
+        }
+        echo '</div>';
+    } elseif ($menu == 'rt_sample') {
+        echo '<div class="panel panel-primary">';
+        if ($aksi == 'tambah') {
+            include 'module/rt_sample/tambah.php';
+        } elseif ($aksi == 'edit') {
+            include 'module/rt_sample/edit.php';
+        } else {
+            include 'module/rt_sample/tampil.php';
+        }
+        echo '</div>';
+    } elseif ($menu == 'konsumsi') {
+        echo '<div class="panel panel-primary">';
+        if ($aksi == 'tambah') {
+            include 'module/konsumsi/tambah.php';
+        } elseif ($aksi == 'edit') {
+            include 'module/konsumsi/edit.php';
+        } else {
+            include 'module/konsumsi/tampil.php';
+        }
+        echo '</div>';
+    } elseif ($menu == 'dkbm') {
+        echo '<div class="panel panel-primary">';
+        if ($aksi == 'tambah') {
+            include 'module/dkbm/tambah.php';
+        } elseif ($aksi == 'edit') {
+            include 'module/dkbm/edit.php';
+        } else {
+            include 'module/dkbm/tampil.php';
+        }
+        echo '</div>';
+    } elseif ($menu == 'kecukupan') {
+        echo '<div class="panel panel-primary">';
+        if ($aksi == 'tambah') {
+            include 'module/kecukupan/tambah.php';
+        } elseif ($aksi == 'edit') {
+            include 'module/kecukupan/edit.php';
+        } else {
+            include 'module/kecukupan/tampil.php';
+        }
+        echo '</div>';
+    } elseif ($menu == 'rkepok') {
+        echo '<div class="panel panel-primary">';
+        if ($aksi == 'tambah') {
+            include 'module/rkepok/tambah.php';
+        } elseif ($aksi == 'edit') {
+            include 'module/rkepok/edit.php';
+        } else {
+            include 'module/rkepok/tampil.php';
+        }
+        echo '</div>';
+    } elseif ($menu == 'kepok') {
+        echo '<div class="panel panel-primary">';
+        if ($aksi == 'tambah') {
+            include 'module/kepok/tambah.php';
+        } elseif ($aksi == 'edit') {
+            include 'module/kepok/edit.php';
+        } else {
+            include 'module/kepok/tampil.php';
+        }
+        echo '</div>';
+    } elseif ($menu == 'ake') {
+        echo '<div class="panel panel-primary">';
+        if ($aksi == 'tambah') {
+            include 'module/ake/tambah.php';
+        } elseif ($aksi == 'edit') {
+            include 'module/ake/edit.php';
+        } else {
+            include 'module/ake/tampil.php';
+        }
+        echo '</div>';
+    } elseif ($menu == 'pph') {
+        echo '<div class="panel panel-primary">';
+        if ($aksi == 'tambah') {
+            include 'module/pph/tambah.php';
+        } elseif ($aksi == 'edit') {
+            include 'module/pph/edit.php';
+        } else {
+            include 'module/pph/tampil.php';
+        }
+        echo '</div>';
     } elseif ($menu == 'kamar') {
         echo '<div class="panel panel-primary">';
         if ($aksi == 'tambah') {
