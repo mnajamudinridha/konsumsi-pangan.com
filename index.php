@@ -17,8 +17,14 @@ include 'fungsi/koneksi.php';
         <link href="bootstrap/css/font-awesome.min.css" rel="stylesheet">
         <link href="bootstrap/css/sticky-footer-navbar.css" rel="stylesheet">
         <link rel="icon" type="image/png" href="source/favicon.png" sizes="16x16">
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+        <link rel="stylesheet" href="bootstrap/datepicker/datepicker3.css">
         <script src="bootstrap/js/jquery-3.1.1.min.js"></script>
+        <script src="bootstrap/datepicker/bootstrap-datepicker.js"></script>
+        <script src="bootstrap/datepicker/locales/bootstrap-datepicker.id.js"></script>
+        <script src="bootstrap/Chart.bundle.min.js"></script>
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script type="text/javascript" src="system/tinymce/tinymce.min.js"></script>
                   <script type="text/javascript">
                     tinymce.init({

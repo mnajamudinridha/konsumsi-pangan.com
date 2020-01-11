@@ -4,24 +4,22 @@ include '../../fungsi/koneksi.php';
 include '../../fungsi/gambar.php';
 if (isset($_POST['kirim'])) {
     $kode = $_POST['kode'];
-    $tanggal = $_POST['tanggal'];
-    $energi = $_POST['energi'];
-    $protein = $_POST['protein'];
+    $nama = $_POST['nama'];
 
     $cari = @$_GET['cari'];
     $halaman = @$_GET['halaman'];
     $query = mysqli_query($con, "SELECT kode
-                             FROM kecukupan
+                             FROM kategori
                              WHERE kode='$kode'");
     $jumlah = mysqli_num_rows($query);
     if ($jumlah > 0) {
         echo 'Kode Sudah Ada';
     } else {
-        mysqli_query($con, "INSERT INTO kecukupan
-                  (kode,tanggal,energi,protein)
+        mysqli_query($con, "INSERT INTO kategori
+                  (kode,nama)
                   VALUES
-                  ('$kode','$tanggal','$energi','$protein')");
+                  ('$kode','$nama')");
 
-        header('location:../../index.php?menu=kecukupan');
+        header('location:../../index.php?menu=kategori');
     }
 }

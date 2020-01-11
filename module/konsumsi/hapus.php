@@ -6,13 +6,13 @@
       $cari = @$_GET['cari'];
       $halaman = @$_GET['halaman'];
       $query = mysqli_query($con, "SELECT kode
-                               FROM kecukupan
+                               FROM kategori
                                WHERE kode='$id'");
       $jumlah = mysqli_num_rows($query);
       if ($jumlah > 0) {
-          mysqli_query($con, "DELETE FROM kecukupan
+          mysqli_query($con, "DELETE FROM kategori
                           WHERE kode='$id'");
-          header('location:../../index.php?menu=kecukupan&halaman='.$halaman.'&cari='.$cari);
+          header('location:../../index.php?menu=kategori&halaman='.$halaman.'&cari='.$cari);
       } else {
           echo 'Maaf, Id tidak ditemukan';
       }
