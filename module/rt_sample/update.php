@@ -4,23 +4,19 @@ include '../../fungsi/koneksi.php';
 include '../../fungsi/gambar.php';
 if (isset($_POST['kirim'])) {
     $kode = $_POST['kode'];
-    $desa = $_POST['desa'];
-    $argeokologi = $_POST['argeokologi'];
-    $ekonomi = $_POST['ekonomi'];
+    $nama = $_POST['nama'];
 
     $cari = @$_GET['cari'];
     $halaman = @$_GET['halaman'];
     $query = mysqli_query($con, "SELECT kode
-                             FROM lokasi
+                             FROM kategori
                              WHERE kode='$kode'");
     $jumlah = mysqli_num_rows($query);
     if ($jumlah > 0) {
-        mysqli_query($con, "UPDATE lokasi
-                        SET desa='$desa',
-                            argeokologi='$argeokologi',
-                            ekonomi='$ekonomi'
+        mysqli_query($con, "UPDATE kategori
+                        SET nama='$nama'
                         WHERE kode='$kode'");
-        header('location:../../index.php?menu=lokasi&halaman='.$halaman.'&cari='.$cari);
+        header('location:../../index.php?menu=kategori&halaman='.$halaman.'&cari='.$cari);
     } else {
         echo 'Kode yang Di Update Tidak Ada';
     }

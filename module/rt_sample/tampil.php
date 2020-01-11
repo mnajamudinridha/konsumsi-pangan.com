@@ -12,14 +12,14 @@ if (empty($_SESSION['login']) || $_SESSION['login'] != 'admin') {
     ?>
     <div class="panel-heading">
         <h3 class="panel-title">
-        Data Lokasi
+        Modul Kategori
         </h3>
     </div>
     <div class="panel-body">
       <div class="btn-group" style="padding-bottom:10px">
-        <a href='?menu=lokasi&aksi=tambah' class="btn btn-primary">
+        <a href='?menu=kategori&aksi=tambah' class="btn btn-primary">
         <i class="glyphicon glyphicon-plus"></i> Tambah</a>
-        <form method="post" action="?menu=lokasi&aksi=cari">
+        <form method="post" action="?menu=kategori&aksi=cari">
             <div class="input-group">
                 <input type="text" name="cari" placeholder=" Cari..." class="form-control">
                 <span class="input-group-btn">
@@ -48,31 +48,29 @@ if (empty($_SESSION['login']) || $_SESSION['login'] != 'admin') {
         $cari = $_GET['cari'];
     }
     if (!empty($cari)) {
-        $datas = mysqli_query($con, "SELECT * FROM lokasi WHERE desa LIKE '%$cari%' OR kode LIKE '%$cari%'");
+        $datas = mysqli_query($con, "SELECT * FROM kategori WHERE nama LIKE '%$cari%' OR kode LIKE '%$cari%'");
         $jumlah = mysqli_num_rows($datas);
-        $data = mysqli_query($con, "SELECT * FROM lokasi WHERE desa LIKE '%$cari%' OR kode LIKE '%$cari%' LIMIT $posisi, $batas");
-        echo "<a href='?menu=lokasi'><h4 class='btn btn-danger'>Ditemukan $jumlah dengan Kata <u>$cari</u>, klik disini untuk CLEAR</h4></a><br><br>";
+        $data = mysqli_query($con, "SELECT * FROM kategori WHERE nama LIKE '%$cari%' OR kode LIKE '%$cari%' LIMIT $posisi, $batas");
+        echo "<a href='?menu=kategori'><h4 class='btn btn-danger'>Ditemukan $jumlah dengan Kata <u>$cari</u>, klik disini untuk CLEAR</h4></a><br><br>";
     } else {
-        $data = mysqli_query($con, "SELECT * FROM lokasi LIMIT $posisi, $batas");
+        $data = mysqli_query($con, "SELECT * FROM kategori LIMIT $posisi, $batas");
     }
     $jumlah = mysqli_num_rows($data);
     if ($jumlah > 0) {
         echo "<table class='table table-hover table-bordered'>";
-        echo "<tr><th>Kode</th><th>Desa/Kelurahan</th><th>Argeokologi</th><th>Ekonomi</th><th style='text-align:center'>Aksi</th></tr>";
+        echo "<tr><th>No</th><th>Kode</th><th>Nama</th><th style='text-align:center'>Aksi</th></tr>";
         while ($a = mysqli_fetch_array($data)) {
             echo '<tr><td>';
+            echo $no;
+            echo '</td><td>';
             echo $a['kode'];
             echo '</td><td>';
-            echo $a['desa'];
-            echo '</td><td>';
-            echo $a['argeokologi'];
-            echo '</td><td>';
-            echo $a['ekonomi'];
+            echo $a['nama'];
             echo '</td><td align="center">';
             echo '<div class="btn-group" role="group" aria-label="...">
-                <a class="btn btn-warning" href="module/lokasi/hapus.php?id=' .$a['kode'].'&halaman='.$nohalaman.'&cari='.$cari.'">
+                <a class="btn btn-warning" href="module/kategori/hapus.php?id=' .$a['kode'].'&halaman='.$nohalaman.'&cari='.$cari.'">
                     <i class="glyphicon glyphicon-trash"></i></a>
-                <a class="btn btn-primary" href="?menu=lokasi&aksi=edit&id=' .$a['kode'].'&halaman='.$nohalaman.'&cari='.$cari.'">
+                <a class="btn btn-primary" href="?menu=kategori&aksi=edit&id=' .$a['kode'].'&halaman='.$nohalaman.'&cari='.$cari.'">
                     <i class="glyphicon glyphicon-edit"></i></a>
                 </div>';
             echo '</td></tr>';
@@ -82,9 +80,9 @@ if (empty($_SESSION['login']) || $_SESSION['login'] != 'admin') {
 
         $total = null;
         if (!empty($cari)) {
-            $total = mysqli_query($con, "SELECT * FROM lokasi WHERE desa LIKE '%$cari%' OR kode LIKE '%$cari%'");
+            $total = mysqli_query($con, "SELECT * FROM kategori WHERE nama LIKE '%$cari%' OR kode LIKE '%$cari%'");
         } else {
-            $total = mysqli_query($con, 'SELECT * FROM lokasi');
+            $total = mysqli_query($con, 'SELECT * FROM kategori');
         }
         $jumlahbaris = mysqli_num_rows($total);
         $jumlahhalaman = ceil($jumlahbaris / $batas);
@@ -93,7 +91,7 @@ if (empty($_SESSION['login']) || $_SESSION['login'] != 'admin') {
         echo "<nav aria-label='Page navigation'>
   <ul class='pagination'>";
         if ($nohalaman > 1) {
-            echo "<li><a href='".$_SERVER['PHP_SELF'].'?menu=lokasi&halaman='.($nohalaman - 1).'&cari='.$cari."' aria-label='Previous'>
+            echo "<li><a href='".$_SERVER['PHP_SELF'].'?menu=kategori&halaman='.($nohalaman - 1).'&cari='.$cari."' aria-label='Previous'>
           <span aria-hidden='true'>&lt;&lt; Sebelumnya</span>
         </a>
       </li>";
@@ -110,14 +108,14 @@ if (empty($_SESSION['login']) || $_SESSION['login'] != 'admin') {
                 if ($halaman == $nohalaman) {
                     echo '<li><a><b>'.$halaman.'</b></a></li>';
                 } else {
-                    echo "<li><a href='".$_SERVER['PHP_SELF'].'?menu=lokasi&halaman='.$halaman.'&cari='.$cari."'>".$halaman.'</a></li>';
+                    echo "<li><a href='".$_SERVER['PHP_SELF'].'?menu=kategori&halaman='.$halaman.'&cari='.$cari."'>".$halaman.'</a></li>';
                 }
                 $tampilhalaman = $halaman;
             }
         }
         if ($nohalaman < $jumlahhalaman) {
             echo "<li>
-            <a href='".$_SERVER['PHP_SELF'].'?menu=lokasi&halaman='.($nohalaman + 1).'&cari='.$cari."' aria-label='Next'>
+            <a href='".$_SERVER['PHP_SELF'].'?menu=kategori&halaman='.($nohalaman + 1).'&cari='.$cari."' aria-label='Next'>
               <span aria-hidden='true'>Selanjutnya &gt;&gt;</span>
             </a>
           </li>";

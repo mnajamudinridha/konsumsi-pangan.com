@@ -1,17 +1,47 @@
 <div class="panel-heading">
     <h3 class="panel-title">
-    Modul Tambah Menu
+    Tambah Lokasi
     </h3>
 </div>
 <div class="panel-body">
-<form action="module/kategori/simpan.php" method="POST" enctype="multipart/form-data">
+<form action="module/lokasi/simpan.php" method="POST" enctype="multipart/form-data">
   <div class="form-group">
     <label for="kode">Kode</label>
-    <input type="text" class="form-control" name="kode" placeholder="Kode Kategori">
+    <input type="text" class="form-control" name="kode" placeholder="Kode Lokasi">
   </div>
   <div class="form-group">
-    <label for="nama">Nama</label>
-    <input type="text" class="form-control" name="nama" placeholder="Nama Kategori">
+    <label for="nama">Desa/Kelurahan</label>
+    <input type="text" class="form-control" name="desa" placeholder="Desa/Kelurahan">
+  </div>
+  <div class="form-group">
+    <label for="kategori">Argeokologi</label>
+        <select name="argeokologi" class="form-control">
+          <option value="">-- Pilih Data --</option>
+          <?php
+          $data = array('Pertanian','Perikanan','Lainnya');
+          foreach($data as $b){
+              if ($b == $a['argeokologi']) {
+                  echo "<option value='$b' selected>$b</option>";
+              } else {
+                  echo "<option value='$b'>$b</option>";
+              }
+          } ?>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="kategori">Ekonomi</label>
+        <select name="ekonomi" class="form-control">
+          <option value="">-- Pilih Data --</option>
+          <?php
+          $data = array('Maju','Sedang','Tertinggal');
+          foreach($data as $b){
+              if ($b == $a['ekonomi']) {
+                  echo "<option value='$b' selected>$b</option>";
+              } else {
+                  echo "<option value='$b'>$b</option>";
+              }
+          } ?>
+    </select>
   </div>
   <button type="submit" class="btn btn-primary" name="kirim">Simpan</button>
 </form>
