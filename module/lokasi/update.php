@@ -4,6 +4,7 @@ include '../../fungsi/koneksi.php';
 include '../../fungsi/gambar.php';
 if (isset($_POST['kirim'])) {
     $kode = $_POST['kode'];
+    $wilayah = $_POST['wilayah'];
     $desa = $_POST['desa'];
     $argeokologi = $_POST['argeokologi'];
     $ekonomi = $_POST['ekonomi'];
@@ -17,6 +18,7 @@ if (isset($_POST['kirim'])) {
     if ($jumlah > 0) {
         mysqli_query($con, "UPDATE lokasi
                         SET desa='$desa',
+                            wilayah='$wilayah',
                             argeokologi='$argeokologi',
                             ekonomi='$ekonomi'
                         WHERE kode='$kode'");

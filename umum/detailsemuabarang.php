@@ -1,7 +1,7 @@
       <?php
           echo '<div class="panel panel-primary">';
           echo '<div class="panel-heading">
-        <h3 class="panel-title">Detail Semua Kamar</h3>
+        <h3 class="panel-title">Detail Semua Barang</h3>
         </div>
         <div class="panel-body">';
           $batas = 8;
@@ -13,7 +13,7 @@
           }
           $posisi = ($nohalaman - 1) * $batas;
           $no = $posisi + 1;
-          $query = mysqli_query($con, "SELECT * FROM kamar WHERE status = 'Y' ORDER BY kode DESC LIMIT $posisi, $batas");
+          $query = mysqli_query($con, "SELECT * FROM barang ORDER BY kode DESC LIMIT $posisi, $batas");
           $jumlah = mysqli_num_rows($query);
           if ($jumlah > 0) {
               $no = 1;
@@ -30,25 +30,22 @@
               <tr>
                 <td colspan="3" style="padding:0px">
                 <a href="">
-                <img style="min-height:120px;height:120px;width:100%;background-color:#555" class="img img-responsive" src="file/image/thumb_'.$a['gambar'].'"></td>
+                <img style="min-height:140px;height:140px;width:100%;background-color:#555" class="img img-responsive" src="file/image/thumb_'.$a['gambar'].'"></td>
                 </a>
               </tr>
               <tr>
-                <td colspan="3">Rp. '.number_format($a['harga'], 2).' / malam</td>
+                <td colspan="3">Rp. '.number_format($a['harga'], 2).'</td>
               </tr>
               <tr>
                 <td colspan="3">
-                <span class="btn-group pull-right" role="group">';
-                if($no == 3 || $no == 5){
-                  echo '<a data-toggle="tooltip" title="Edit" class="btn btn-xs btn-info" href="?menu=sewakamar&id='.$a['kode'].'">
-                                      <i class="fa fa-shopping-cart"></i> Sedang di Reservasi
-                                    </a>';
-                }else{
-                  echo '<a data-toggle="tooltip" title="Edit" class="btn btn-xs btn-primary" href="?menu=sewakamar&id='.$a['kode'].'">
-                                      <i class="fa fa-shopping-cart"></i> Reservasi Kamar Ini
-                                    </a>';
-                }
-                echo '</span>
+                <span class="btn-group pull-right" role="group">
+                  <a data-toggle="tooltip" title="Lihat" class="btn btn-xs btn-primary" href="?menu=detailbarang&id='.$a['kode'].'">
+                    <i class="fa fa-eye"></i> Lihat
+                  </a>
+                  <a data-toggle="tooltip" title="Edit" class="btn btn-xs btn-warning" href="?menu=belibarang&id='.$a['kode'].'">
+                    <i class="fa fa-shopping-cart"></i> Beli
+                  </a>
+                </span>
                 </td>
               </tr>
             </table>';
@@ -62,7 +59,7 @@
               }
               echo '</div>';
 
-              $total = mysqli_query($con, 'SELECT * FROM kamar');
+              $total = mysqli_query($con, 'SELECT * FROM barang');
               $jumlahbaris = mysqli_num_rows($total);
               $jumlahhalaman = ceil($jumlahbaris / $batas);
 
@@ -72,7 +69,7 @@
               echo "<nav aria-label='Page navigation'>
     <ul class='pagination'>";
               if ($nohalaman > 1) {
-                  echo "<li><a href='".$_SERVER['PHP_SELF'].'?menu=detailsemuakamar&halaman='.($nohalaman - 1)." aria-label='Previous'>
+                  echo "<li><a href='".$_SERVER['PHP_SELF'].'?menu=detailsemuabarang&halaman='.($nohalaman - 1)." aria-label='Previous'>
             <span aria-hidden='true'>&lt;&lt; Sebelumnya</span>
           </a>
         </li>";
@@ -89,14 +86,14 @@
                       if ($halaman == $nohalaman) {
                           echo '<li><a><b>'.$halaman.'</b></a></li>';
                       } else {
-                          echo "<li><a href='".$_SERVER['PHP_SELF'].'?menu=detailsemuakamar&halaman='.$halaman."'>".$halaman.'</a></li>';
+                          echo "<li><a href='".$_SERVER['PHP_SELF'].'?menu=detailsemuabarang&halaman='.$halaman."'>".$halaman.'</a></li>';
                       }
                       $tampilhalaman = $halaman;
                   }
               }
               if ($nohalaman < $jumlahhalaman) {
                   echo "<li>
-              <a href='".$_SERVER['PHP_SELF'].'?menu=detailsemuakamar&halaman='.($nohalaman + 1)."' aria-label='Next'>
+              <a href='".$_SERVER['PHP_SELF'].'?menu=detailsemuabarang&halaman='.($nohalaman + 1)."' aria-label='Next'>
                 <span aria-hidden='true'>Selanjutnya &gt;&gt;</span>
               </a>
             </li>";

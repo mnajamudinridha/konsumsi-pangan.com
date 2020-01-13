@@ -12,14 +12,14 @@ if (empty($_SESSION['login']) || $_SESSION['login'] != 'admin') {
     ?>
     <div class="panel-heading">
         <h3 class="panel-title">
-        Modul Kategori
+        Data Konsumsi
         </h3>
     </div>
     <div class="panel-body">
       <div class="btn-group" style="padding-bottom:10px">
-        <a href='?menu=kategori&aksi=tambah' class="btn btn-primary">
+        <a href='?menu=konsumsi&aksi=tambah' class="btn btn-primary">
         <i class="glyphicon glyphicon-plus"></i> Tambah</a>
-        <form method="post" action="?menu=kategori&aksi=cari">
+        <form method="post" action="?menu=konsumsi&aksi=cari">
             <div class="input-group">
                 <input type="text" name="cari" placeholder=" Cari..." class="form-control">
                 <span class="input-group-btn">
@@ -48,29 +48,61 @@ if (empty($_SESSION['login']) || $_SESSION['login'] != 'admin') {
         $cari = $_GET['cari'];
     }
     if (!empty($cari)) {
-        $datas = mysqli_query($con, "SELECT * FROM kategori WHERE nama LIKE '%$cari%' OR kode LIKE '%$cari%'");
+        $datas = mysqli_query($con, "SELECT konsumsi.*, 
+        rt_sample.nama as samplenama,
+        dkbm.nama as dkbmnama,
+        jenispangan.nama as jenisnama 
+        FROM konsumsi 
+        LEFT JOIN rt_sample ON konsumsi.sample = rt_sample.id
+        LEFT JOIN dkbm ON konsumsi.dkbm = dkbm.kode
+        LEFT JOIN jenispangan ON dkbm.jenis = jenispangan.kode 
+        WHERE rt_sample.nama LIKE '%$cari%' OR dkbm.nama LIKE '%$cari%' OR jenispangan.nama LIKE '%$cari%'");
         $jumlah = mysqli_num_rows($datas);
-        $data = mysqli_query($con, "SELECT * FROM kategori WHERE nama LIKE '%$cari%' OR kode LIKE '%$cari%' LIMIT $posisi, $batas");
-        echo "<a href='?menu=kategori'><h4 class='btn btn-danger'>Ditemukan $jumlah dengan Kata <u>$cari</u>, klik disini untuk CLEAR</h4></a><br><br>";
+        $data = mysqli_query($con, "SELECT konsumsi.*, 
+        rt_sample.nama as samplenama,
+        dkbm.nama as dkbmnama,
+        jenispangan.nama as jenisnama 
+        FROM konsumsi 
+        LEFT JOIN rt_sample ON konsumsi.sample = rt_sample.id
+        LEFT JOIN dkbm ON konsumsi.dkbm = dkbm.kode
+        LEFT JOIN jenispangan ON dkbm.jenis = jenispangan.kode 
+        WHERE rt_sample.nama LIKE '%$cari%' OR dkbm.nama LIKE '%$cari%' OR jenispangan.nama LIKE '%$cari%' LIMIT $posisi, $batas");
+        echo "<a href='?menu=konsumsi'><h4 class='btn btn-danger'>Ditemukan $jumlah dengan Kata <u>$cari</u>, klik disini untuk CLEAR</h4></a><br><br>";
     } else {
-        $data = mysqli_query($con, "SELECT * FROM kategori LIMIT $posisi, $batas");
+        $data = mysqli_query($con, "SELECT konsumsi.*, 
+                                    rt_sample.nama as samplenama,
+                                    dkbm.nama as dkbmnama,
+                                    jenispangan.nama as jenisnama 
+                                    FROM konsumsi 
+                                    LEFT JOIN rt_sample ON konsumsi.sample = rt_sample.id
+                                    LEFT JOIN dkbm ON konsumsi.dkbm = dkbm.kode
+                                    LEFT JOIN jenispangan ON dkbm.jenis = jenispangan.kode
+                                    LIMIT $posisi, $batas");
     }
     $jumlah = mysqli_num_rows($data);
     if ($jumlah > 0) {
         echo "<table class='table table-hover table-bordered'>";
-        echo "<tr><th>No</th><th>Kode</th><th>Nama</th><th style='text-align:center'>Aksi</th></tr>";
+        echo "<tr><th>No</th><th>Nama</th><th>Pangan</th><th>Jenis</th><th>Energi</th><th>Protein</th><th>Tanggal</th><th style='text-align:center'>Aksi</th></tr>";
         while ($a = mysqli_fetch_array($data)) {
             echo '<tr><td>';
             echo $no;
             echo '</td><td>';
-            echo $a['kode'];
+            echo $a['samplenama'];
             echo '</td><td>';
-            echo $a['nama'];
+            echo $a['dkbmnama'];
+            echo '</td><td>';
+            echo $a['jenisnama'];
+            echo '</td><td>';
+            echo $a['energi'];
+            echo '/100g</td><td>';
+            echo $a['protein'];
+            echo '/100g</td><td>';
+            echo $a['tanggal'];
             echo '</td><td align="center">';
             echo '<div class="btn-group" role="group" aria-label="...">
-                <a class="btn btn-warning" href="module/kategori/hapus.php?id=' .$a['kode'].'&halaman='.$nohalaman.'&cari='.$cari.'">
+                <a class="btn btn-warning" href="module/konsumsi/hapus.php?id=' .$a['id'].'&halaman='.$nohalaman.'&cari='.$cari.'">
                     <i class="glyphicon glyphicon-trash"></i></a>
-                <a class="btn btn-primary" href="?menu=kategori&aksi=edit&id=' .$a['kode'].'&halaman='.$nohalaman.'&cari='.$cari.'">
+                <a class="btn btn-primary" href="?menu=konsumsi&aksi=edit&id=' .$a['id'].'&halaman='.$nohalaman.'&cari='.$cari.'">
                     <i class="glyphicon glyphicon-edit"></i></a>
                 </div>';
             echo '</td></tr>';
@@ -80,9 +112,16 @@ if (empty($_SESSION['login']) || $_SESSION['login'] != 'admin') {
 
         $total = null;
         if (!empty($cari)) {
-            $total = mysqli_query($con, "SELECT * FROM kategori WHERE nama LIKE '%$cari%' OR kode LIKE '%$cari%'");
+            $total = mysqli_query($con, "SELECT konsumsi.*, 
+            rt_sample.nama as samplenama,
+            dkbm.nama as dkbmnama,
+            jenispangan.nama as jenisnama 
+            FROM konsumsi 
+            LEFT JOIN rt_sample ON konsumsi.sample = rt_sample.id
+            LEFT JOIN dkbm ON konsumsi.dkbm = dkbm.kode
+            LEFT JOIN jenispangan ON dkbm.jenis = jenispangan.kode WHERE rt_sample.nama LIKE '%$cari%' OR dkbm.nama LIKE '%$cari%' OR jenispangan.nama LIKE '%$cari%'");
         } else {
-            $total = mysqli_query($con, 'SELECT * FROM kategori');
+            $total = mysqli_query($con, 'SELECT * FROM konsumsi');
         }
         $jumlahbaris = mysqli_num_rows($total);
         $jumlahhalaman = ceil($jumlahbaris / $batas);
@@ -91,7 +130,7 @@ if (empty($_SESSION['login']) || $_SESSION['login'] != 'admin') {
         echo "<nav aria-label='Page navigation'>
   <ul class='pagination'>";
         if ($nohalaman > 1) {
-            echo "<li><a href='".$_SERVER['PHP_SELF'].'?menu=kategori&halaman='.($nohalaman - 1).'&cari='.$cari."' aria-label='Previous'>
+            echo "<li><a href='".$_SERVER['PHP_SELF'].'?menu=konsumsi&halaman='.($nohalaman - 1).'&cari='.$cari."' aria-label='Previous'>
           <span aria-hidden='true'>&lt;&lt; Sebelumnya</span>
         </a>
       </li>";
@@ -108,14 +147,14 @@ if (empty($_SESSION['login']) || $_SESSION['login'] != 'admin') {
                 if ($halaman == $nohalaman) {
                     echo '<li><a><b>'.$halaman.'</b></a></li>';
                 } else {
-                    echo "<li><a href='".$_SERVER['PHP_SELF'].'?menu=kategori&halaman='.$halaman.'&cari='.$cari."'>".$halaman.'</a></li>';
+                    echo "<li><a href='".$_SERVER['PHP_SELF'].'?menu=konsumsi&halaman='.$halaman.'&cari='.$cari."'>".$halaman.'</a></li>';
                 }
                 $tampilhalaman = $halaman;
             }
         }
         if ($nohalaman < $jumlahhalaman) {
             echo "<li>
-            <a href='".$_SERVER['PHP_SELF'].'?menu=kategori&halaman='.($nohalaman + 1).'&cari='.$cari."' aria-label='Next'>
+            <a href='".$_SERVER['PHP_SELF'].'?menu=konsumsi&halaman='.($nohalaman + 1).'&cari='.$cari."' aria-label='Next'>
               <span aria-hidden='true'>Selanjutnya &gt;&gt;</span>
             </a>
           </li>";

@@ -3,7 +3,7 @@
           echo '<div class="panel panel-primary">';
           $kateg = mysqli_fetch_array(mysqli_query($con, 'SELECT * FROM kategori WHERE kode = "'.$_GET['id'].'"'));
           echo '<div class="panel-heading">
-        <h3 class="panel-title">Detail Kamar Berdasarkan Tipe <b>'.$kateg['nama'].'</b></h3>
+        <h3 class="panel-title">Detail Barang Berdasarkan Kategori <b>'.$kateg['nama'].'</b></h3>
         </div>
         <div class="panel-body">';
           $batas = 8;
@@ -15,7 +15,7 @@
           }
           $posisi = ($nohalaman - 1) * $batas;
           $no = $posisi + 1;
-          $query = mysqli_query($con, "SELECT * FROM kamar WHERE kategori = '$kateg[kode]' ORDER BY kode DESC LIMIT $posisi, $batas");
+          $query = mysqli_query($con, "SELECT * FROM barang WHERE kategori = '$kateg[kode]' ORDER BY kode DESC LIMIT $posisi, $batas");
           $jumlah = mysqli_num_rows($query);
           if ($jumlah > 0) {
               $no = 1;
@@ -36,13 +36,16 @@
                 </a>
               </tr>
               <tr>
-                <td colspan="3">Rp. '.number_format($a['harga'], 2).' / malam</td>
+                <td colspan="3">Rp. '.number_format($a['harga'], 2).'</td>
               </tr>
               <tr>
                 <td colspan="3">
                 <span class="btn-group pull-right" role="group">
-                  <a data-toggle="tooltip" title="Edit" class="btn btn-xs btn-primary" href="?menu=sewakamar&id='.$a['kode'].'">
-                    <i class="fa fa-shopping-cart"></i> Resevasi Kamar Ini
+                  <a data-toggle="tooltip" title="Lihat" class="btn btn-xs btn-primary" href="?menu=detailbarang&id='.$a['kode'].'">
+                    <i class="fa fa-eye"></i> Lihat
+                  </a>
+                  <a data-toggle="tooltip" title="Edit" class="btn btn-xs btn-warning" href="?menu=belibarang&id='.$a['kode'].'">
+                    <i class="fa fa-shopping-cart"></i> Beli
                   </a>
                 </span>
                 </td>
@@ -57,7 +60,7 @@
                   ++$no;
               }
               echo '</div>';
-              $total = mysqli_query($con, 'SELECT * FROM kamar WHERE kategori = "'.$kateg['kode'].'"');
+              $total = mysqli_query($con, 'SELECT * FROM barang WHERE kategori = "'.$kateg['kode'].'"');
               $jumlahbaris = mysqli_num_rows($total);
               $jumlahhalaman = ceil($jumlahbaris / $batas);
 

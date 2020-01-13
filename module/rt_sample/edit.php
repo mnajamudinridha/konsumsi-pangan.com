@@ -10,7 +10,7 @@ include 'fungsi/koneksi.php';
   if (isset($_GET['id'])) {
       $id = $_GET['id'];
       $query = mysqli_query($con, "SELECT * FROM rt_sample
-                                 WHERE kode = '$id'");
+                                 WHERE id = '$id'");
       $jumlah = mysqli_num_rows($query);
       if ($jumlah > 0) {
           $a = mysqli_fetch_array($query); ?>
@@ -18,21 +18,9 @@ include 'fungsi/koneksi.php';
 
 <form action="module/rt_sample/update.php?halaman=<?php echo $_GET['halaman']; ?>&cari=<?php echo $_GET['cari']; ?>" method="POST"  enctype="multipart/form-data">
   <div class="form-group">
-    <label for="kode">Kode RT Sample</label>
-    <input type="text" class="form-control" name="kode" placeholder="Kode"
-           value="<?php echo $a['kode'] ?>" readonly="readonly">
-  </div>
-  <div class="form-group">
-    <label for="nama">Nama</label>
-    <input type="text" class="form-control" name="nama" placeholder="Nama" value="<?php echo $a['nama'] ?>">
-  </div>
-  <div class="form-group">
-    <label for="nama">Alamat</label>
-    <input type="text" class="form-control" name="alamat" placeholder="Alamat" value="<?php echo $a['alamat'] ?>">
-  </div>
-  <div class="form-group">
-    <label for="nama">Jumlah Orang</label>
-    <input type="number" class="form-control" name="jumlahorang" placeholder="Jumlah Orang" value="<?php echo $a['jumlahorang'] ?>">
+    <label for="kode">ID</label>
+    <input type="text" class="form-control" name="id" placeholder="Kode"
+           value="<?php echo $a['id'] ?>" readonly="readonly">
   </div>
   <div class="form-group">
     <label for="lokasi">Lokasi</label>
@@ -48,6 +36,18 @@ include 'fungsi/koneksi.php';
                     }
                 } ?>
         </select>
+  </div>
+  <div class="form-group">
+    <label for="nama">Nama</label>
+    <input type="text" class="form-control" name="nama" placeholder="Nama" value="<?php echo $a['nama'] ?>">
+  </div>
+  <div class="form-group">
+    <label for="nama">Alamat</label>
+    <input type="text" class="form-control" name="alamat" placeholder="Alamat" value="<?php echo $a['alamat'] ?>">
+  </div>
+  <div class="form-group">
+    <label for="nama">Jumlah Orang</label>
+    <input type="number" class="form-control" name="jumlahorang" placeholder="Jumlah Orang" value="<?php echo $a['jumlahorang'] ?>">
   </div>
   <button type="submit" class="btn btn-primary" name="kirim">Update</button>
 </form>

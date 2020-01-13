@@ -8,18 +8,17 @@
         if (isset($_SESSION['login'])) {
             if ($_SESSION['login'] == 'admin') {
               ?>
-              Manajemen Resevasi<br><br>
-              <a href="index.php?menu=kamar" class="list-group-item">Manajemen Kamar</a>
-              <a href="index.php?menu=transaksi" class="list-group-item">Manajemen Reservasi</a>
-              <a href="index.php?menu=pembayaran" class="list-group-item">Manajemen Pembayaran</a>
+              Data Master<br><br>
+              <a href="index.php" class="list-group-item">Beranda</a>
+              <a href="index.php?menu=wilayah" class="list-group-item">Data Wilayah</a>
+              <a href="index.php?menu=lokasi" class="list-group-item">Data Lokasi</a>
+              <a href="index.php?menu=rt_sample" class="list-group-item">Data RT Sample</a>
+              <a href="index.php?menu=jenispangan" class="list-group-item">Data Jenis Pangan</a>
+              <a href="index.php?menu=dkbm" class="list-group-item">Data DKBM</a>
               <br>
-              Master Data<br><br>
-              <a href="index.php?menu=admin" class="list-group-item">Data User</a>
-              <a href="index.php?menu=user" class="list-group-item">Data Pelanggan</a>
+              Data Website<br><br>
+              <a href="index.php?menu=admin" class="list-group-item">Data Admin</a>
               <a href="index.php?menu=halaman" class="list-group-item">Data Halaman</a>
-              <a href="index.php?menu=laporan" class="list-group-item">Data Laporan</a>
-              <br>
-              Data Akun<br><br>
               <a href="index.php?menu=gantidata" class="list-group-item">Ganti Data</a>
               <a href="module/login/logout.php" class="list-group-item">Logout</a>
               <?php
@@ -42,15 +41,19 @@
         } else {
             ?>
             Menu Utama<br><br>
-            <a href="index.php" class="list-group-item">Home</a>
-            <a href="index.php?menu=page&id=2" class="list-group-item">Profil Kami</a>
-            <a href="index.php?menu=page&id=3" class="list-group-item">Cara Resevasi</a>
-            <a href="index.php?menu=page&id=4" class="list-group-item">Kontak Kami</a>
+            <a href="index.php" class="list-group-item">Beranda</a>
+            <a href="index.php?menu=page&id=2" class="list-group-item">Tentang Gizi</a>
+            <a href="index.php?menu=page&id=3" class="list-group-item">Tentang B2SA</a>
+            <a href="index.php?menu=page&id=4" class="list-group-item">Tentang Pola Konsumsi</a>
             <br><br>
-          Menu Resevasi<br><br>
-          <a href="index.php?menu=detailsemuakamar" class="list-group-item">List Semua Kamar</a>
-          <a href="index.php?menu=register" class="list-group-item">Registrasi User</a>
-          <a href="index.php?menu=login" class="list-group-item">Login User/User</a>
+            Menu PPH<br><br>
+            <a href="index.php" class="list-group-item">Beranda</a>
+            <a href="index.php?menu=page&id=2" class="list-group-item">Tentang Gizi</a>
+            <a href="index.php?menu=page&id=3" class="list-group-item">Tentang B2SA</a>
+            <a href="index.php?menu=page&id=4" class="list-group-item">Tentang Pola Konsumsi</a>
+            <br><br>
+            Menu Akun<br><br>
+          <a href="index.php?menu=login" class="list-group-item">Login Admin</a>
           <?php
         }
          ?>

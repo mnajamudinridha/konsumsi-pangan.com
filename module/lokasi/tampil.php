@@ -48,20 +48,22 @@ if (empty($_SESSION['login']) || $_SESSION['login'] != 'admin') {
         $cari = $_GET['cari'];
     }
     if (!empty($cari)) {
-        $datas = mysqli_query($con, "SELECT * FROM lokasi WHERE desa LIKE '%$cari%' OR kode LIKE '%$cari%'");
+        $datas = mysqli_query($con, "SELECT lokasi.*, wilayah.nama as wilayahnama FROM lokasi LEFT JOIN wilayah ON lokasi.wilayah = wilayah.id WHERE desa LIKE '%$cari%' OR lokasi.kode LIKE '%$cari%'");
         $jumlah = mysqli_num_rows($datas);
-        $data = mysqli_query($con, "SELECT * FROM lokasi WHERE desa LIKE '%$cari%' OR kode LIKE '%$cari%' LIMIT $posisi, $batas");
+        $data = mysqli_query($con, "SELECT lokasi.*, wilayah.nama as wilayahnama FROM lokasi LEFT JOIN wilayah ON lokasi.wilayah = wilayah.id WHERE desa LIKE '%$cari%' OR lokasi.kode LIKE '%$cari%' LIMIT $posisi, $batas");
         echo "<a href='?menu=lokasi'><h4 class='btn btn-danger'>Ditemukan $jumlah dengan Kata <u>$cari</u>, klik disini untuk CLEAR</h4></a><br><br>";
     } else {
-        $data = mysqli_query($con, "SELECT * FROM lokasi LIMIT $posisi, $batas");
+        $data = mysqli_query($con, "SELECT lokasi.*, wilayah.nama as wilayahnama FROM lokasi LEFT JOIN wilayah ON lokasi.wilayah = wilayah.id LIMIT $posisi, $batas");
     }
     $jumlah = mysqli_num_rows($data);
     if ($jumlah > 0) {
         echo "<table class='table table-hover table-bordered'>";
-        echo "<tr><th>Kode</th><th>Desa/Kelurahan</th><th>Argeokologi</th><th>Ekonomi</th><th style='text-align:center'>Aksi</th></tr>";
+        echo "<tr><th>Kode</th><th>Wilayah</th><th>Desa/Kelurahan</th><th>Argeokologi</th><th>Ekonomi</th><th style='text-align:center'>Aksi</th></tr>";
         while ($a = mysqli_fetch_array($data)) {
             echo '<tr><td>';
             echo $a['kode'];
+            echo '</td><td>';
+            echo $a['wilayahnama'];
             echo '</td><td>';
             echo $a['desa'];
             echo '</td><td>';
@@ -82,9 +84,9 @@ if (empty($_SESSION['login']) || $_SESSION['login'] != 'admin') {
 
         $total = null;
         if (!empty($cari)) {
-            $total = mysqli_query($con, "SELECT * FROM lokasi WHERE desa LIKE '%$cari%' OR kode LIKE '%$cari%'");
+            $total = mysqli_query($con, "SELECT lokasi.*, wilayah.nama as wilayahnama FROM lokasi LEFT JOIN wilayah ON lokasi.wilayah = wilayah.id WHERE desa LIKE '%$cari%' OR lokasi.kode LIKE '%$cari%'");
         } else {
-            $total = mysqli_query($con, 'SELECT * FROM lokasi');
+            $total = mysqli_query($con, 'SELECT lokasi.*, wilayah.nama as wilayahnama FROM lokasi LEFT JOIN wilayah ON lokasi.wilayah = wilayah.id');
         }
         $jumlahbaris = mysqli_num_rows($total);
         $jumlahhalaman = ceil($jumlahbaris / $batas);

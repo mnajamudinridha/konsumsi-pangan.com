@@ -6,7 +6,7 @@
   <div class="panel-body" style="padding:10px">';
   echo '<div class="row">';
   $no = 1;
-    $query = mysqli_query($con, 'SELECT * FROM kamar ORDER BY kode DESC LIMIT 2');
+    $query = mysqli_query($con, 'SELECT * FROM barang ORDER BY kode DESC LIMIT 2');
     $jumlah = mysqli_num_rows($query);
     if ($jumlah > 0) {
         while ($a = mysqli_fetch_array($query)) {
@@ -30,10 +30,10 @@
         <tr>
           <td colspan="3">
           <span class="btn-group pull-right" role="group">
-            <a data-toggle="tooltip" title="Lihat" class="btn btn-xs btn-primary" href="?menu=detailkamar&id='.$a['kode'].'">
+            <a data-toggle="tooltip" title="Lihat" class="btn btn-xs btn-primary" href="?menu=detailbarang&id='.$a['kode'].'">
               <i class="fa fa-eye"></i> Lihat
             </a>
-            <a data-toggle="tooltip" title="Edit" class="btn btn-xs btn-warning" href="?menu=belikamar&id='.$a['kode'].'">
+            <a data-toggle="tooltip" title="Edit" class="btn btn-xs btn-warning" href="?menu=belibarang&id='.$a['kode'].'">
               <i class="fa fa-shopping-cart"></i> Beli
             </a>
           </span>

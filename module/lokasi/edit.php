@@ -23,6 +23,21 @@ include 'fungsi/koneksi.php';
            value="<?php echo $a['kode'] ?>" readonly="readonly">
   </div>
   <div class="form-group">
+    <label for="lokasi">Wilayah</label>
+        <select name="wilayah" class="form-control">
+          <option value="">-- Pilih Data --</option>
+          <?php
+                $query = mysqli_query($con, 'SELECT * FROM wilayah');
+                while ($b = mysqli_fetch_array($query)) {
+                    if ($b['id'] == @$a['wilayah']) {
+                        echo "<option value='$b[id]' selected>$b[tahun] - $b[kode] - $b[nama]</option>";
+                    } else {
+                        echo "<option value='$b[id]'>$b[tahun] - $b[kode] - $b[nama]</option>";
+                    }
+                } ?>
+        </select>
+  </div>
+  <div class="form-group">
     <label for="nama">Desa/Kelurahan</label>
     <input type="text" class="form-control" name="desa" placeholder="Desa/Kelurahan"
            value="<?php echo $a['desa'] ?>">

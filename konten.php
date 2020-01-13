@@ -170,116 +170,14 @@ if (isset($_GET['menu'])) {
             include 'module/dkbm/tampil.php';
         }
         echo '</div>';
-    } elseif ($menu == 'kecukupan') {
+    } elseif ($menu == 'jenispangan') {
         echo '<div class="panel panel-primary">';
         if ($aksi == 'tambah') {
-            include 'module/kecukupan/tambah.php';
+            include 'module/jenispangan/tambah.php';
         } elseif ($aksi == 'edit') {
-            include 'module/kecukupan/edit.php';
+            include 'module/jenispangan/edit.php';
         } else {
-            include 'module/kecukupan/tampil.php';
-        }
-        echo '</div>';
-    } elseif ($menu == 'rkepok') {
-        echo '<div class="panel panel-primary">';
-        if ($aksi == 'tambah') {
-            include 'module/rkepok/tambah.php';
-        } elseif ($aksi == 'edit') {
-            include 'module/rkepok/edit.php';
-        } else {
-            include 'module/rkepok/tampil.php';
-        }
-        echo '</div>';
-    } elseif ($menu == 'kepok') {
-        echo '<div class="panel panel-primary">';
-        if ($aksi == 'tambah') {
-            include 'module/kepok/tambah.php';
-        } elseif ($aksi == 'edit') {
-            include 'module/kepok/edit.php';
-        } else {
-            include 'module/kepok/tampil.php';
-        }
-        echo '</div>';
-    } elseif ($menu == 'ake') {
-        echo '<div class="panel panel-primary">';
-        if ($aksi == 'tambah') {
-            include 'module/ake/tambah.php';
-        } elseif ($aksi == 'edit') {
-            include 'module/ake/edit.php';
-        } else {
-            include 'module/ake/tampil.php';
-        }
-        echo '</div>';
-    } elseif ($menu == 'pph') {
-        echo '<div class="panel panel-primary">';
-        if ($aksi == 'tambah') {
-            include 'module/pph/tambah.php';
-        } elseif ($aksi == 'edit') {
-            include 'module/pph/edit.php';
-        } else {
-            include 'module/pph/tampil.php';
-        }
-        echo '</div>';
-    } elseif ($menu == 'kamar') {
-        echo '<div class="panel panel-primary">';
-        if ($aksi == 'tambah') {
-            include 'module/kamar/tambah.php';
-        } elseif ($aksi == 'edit') {
-            include 'module/kamar/edit.php';
-        } else {
-            include 'module/kamar/tampil.php';
-        }
-        echo '</div>';
-    } elseif ($menu == 'kategori') {
-        echo '<div class="panel panel-primary">';
-        if ($aksi == 'tambah') {
-            include 'module/kategori/tambah.php';
-        } elseif ($aksi == 'edit') {
-            include 'module/kategori/edit.php';
-        } else {
-            include 'module/kategori/tampil.php';
-        }
-        echo '</div>';
-    } elseif ($menu == 'laporan') {
-        echo '<div class="panel panel-primary">';
-        if ($aksi == 'tambah') {
-            include 'module/laporan/tambah.php';
-        } elseif ($aksi == 'edit') {
-            include 'module/laporan/edit.php';
-        } else {
-            include 'module/laporan/tampil.php';
-        }
-        echo '</div>';
-    } elseif ($menu == 'transaksi') {
-        echo '<div class="panel panel-primary">';
-        if ($aksi == 'lihat') {
-            include 'module/transaksi/lihat.php';
-        } else {
-            include 'module/transaksi/tampil.php';
-        }
-        echo '</div>';
-    } elseif ($menu == 'pembayaran') {
-        echo '<div class="panel panel-primary">';
-        if ($aksi == 'lihat') {
-            include 'module/pembayaran/lihat.php';
-        } elseif ($aksi == 'bayar') {
-            include 'module/pembayaran/bayar.php';
-        } elseif ($aksi == 'kembali') {
-            include 'module/pembayaran/kembali.php';
-        } else {
-            include 'module/pembayaran/tampil.php';
-        }
-        echo '</div>';
-    }  elseif ($menu == 'pengembalian') {
-        echo '<div class="panel panel-primary">';
-        if ($aksi == 'lihat') {
-            include 'module/pengembalian/lihat.php';
-        } elseif ($aksi == 'bayar') {
-            include 'module/pengembalian/bayar.php';
-        } elseif ($aksi == 'kembali') {
-            include 'module/pengembalian/kembali.php';
-        } else {
-            include 'module/pengembalian/tampil.php';
+            include 'module/jenispangan/tampil.php';
         }
         echo '</div>';
     } elseif ($menu == 'halaman') {
@@ -302,21 +200,6 @@ if (isset($_GET['menu'])) {
             include 'module/menu/tampil.php';
         }
         echo '</div>';
-    } elseif($menu =='gagalbeli'){
-      echo '<div class="row">';
-      echo '<div class="col-md-12">';
-      echo '<div class="panel panel-primary">';
-      echo '<div class="panel-heading">
-          <h3 class="panel-title">
-          Gagal Melakukan Resevasi Kamar
-          </h3>
-      </div>
-      <div class="panel-body">';
-      echo '<h1>Gagal Melakukan Resevasi Kamar, Kamar Tidak Tersedia</h1>';
-      echo '</div>';
-      echo '</div>';
-      echo '</div>';
-      echo '</div>';
     }else {
         echo '<div class="row">';
         echo '<div class="col-md-12">';

@@ -1,23 +1,25 @@
 <?php
 if (empty($_SESSION['login']) || $_SESSION['login'] != 'admin') {
-    echo '<div class="panel-heading">
+  echo '<div class="panel-heading">
           <h3 class="panel-title">
           Harus Login
           </h3>
       </div>
       <div class="panel-body">';
-    echo "<h1>Anda Harus Login, Kembali Ke <a href='index.php'>Home</a></h1>";
-    echo '</div>';
+  echo "<h1>Anda Harus Login, Kembali Ke <a href='index.php'>Home</a></h1>";
+  echo '</div>';
 } else {
     ?>
     <div class="panel-heading">
         <h3 class="panel-title">
-        Modul Resevasi Kamar
+        Data DKBM
         </h3>
     </div>
     <div class="panel-body">
       <div class="btn-group" style="padding-bottom:10px">
-        <form method="post" action="?menu=transaksi&aksi=cari">
+        <a href='?menu=dkbm&aksi=tambah' class="btn btn-primary">
+        <i class="glyphicon glyphicon-plus"></i> Tambah</a>
+        <form method="post" action="?menu=dkbm&aksi=cari">
             <div class="input-group">
                 <input type="text" name="cari" placeholder=" Cari..." class="form-control">
                 <span class="input-group-btn">
@@ -46,38 +48,32 @@ if (empty($_SESSION['login']) || $_SESSION['login'] != 'admin') {
         $cari = $_GET['cari'];
     }
     if (!empty($cari)) {
-        $datas = mysqli_query($con, "SELECT * FROM transaksi WHERE user LIKE '%$cari%' OR tanggal LIKE '%$cari%' GROUP BY user, tanggal");
+        $datas = mysqli_query($con, "SELECT dkbm.*, jenispangan.nama as jenis FROM dkbm LEFT JOIN jenispangan ON dkbm.jenis = jenispangan.kode WHERE dkbm.nama LIKE '%$cari%' OR dkbm.kode LIKE '%$cari%'");
         $jumlah = mysqli_num_rows($datas);
-        $data = mysqli_query($con, "SELECT transaksi.*, SUM(transaksi.lama) as lamatr, kamar.harga,kamar.gambar FROM transaksi LEFT JOIN kamar ON transaksi.kamar = kamar.kode WHERE user LIKE '%$cari%' OR tanggal LIKE '%$cari%' GROUP BY user, tanggal LIMIT $posisi, $batas");
-        echo "<a href='?menu=transaksi'><h4 class='btn btn-danger'>Ditemukan $jumlah dengan Kata <u>$cari</u>, klik disini untuk CLEAR</h4></a><br><br>";
+        $data = mysqli_query($con, "SELECT dkbm.*, jenispangan.nama as jenis FROM dkbm LEFT JOIN jenispangan ON dkbm.jenis = jenispangan.kode WHERE dkbm.nama LIKE '%$cari%' OR dkbm.kode LIKE '%$cari%' LIMIT $posisi, $batas");
+        echo "<a href='?menu=dkbm'><h4 class='btn btn-danger'>Ditemukan $jumlah dengan Kata <u>$cari</u>, klik disini untuk CLEAR</h4></a><br><br>";
     } else {
-        $data = mysqli_query($con, "SELECT transaksi.*, SUM(transaksi.lama) as lamatr, kamar.harga, kamar.gambar FROM transaksi LEFT JOIN kamar ON transaksi.kamar = kamar.kode GROUP BY user, tanggal LIMIT $posisi, $batas");
+        $data = mysqli_query($con, "SELECT dkbm.*, jenispangan.nama as jenis FROM dkbm LEFT JOIN jenispangan ON dkbm.jenis = jenispangan.kode LIMIT $posisi, $batas");
     }
     $jumlah = mysqli_num_rows($data);
     if ($jumlah > 0) {
         echo "<table class='table table-hover table-bordered'>";
-        echo "<tr><th>No</th><th>User</th><th>Kamar</th><th>Harga</th><th>Lama</th><th>Check In</th><th>Check Out</th><th>Total</th><th style='text-align:center;width:10px'>Aksi</th></tr>";
+        echo "<tr><th>No</th><th>Kode</th><th>Nama</th><th>Jenis</th><th style='text-align:center'>Aksi</th></tr>";
         while ($a = mysqli_fetch_array($data)) {
             echo '<tr><td>';
             echo $no;
             echo '</td><td>';
-            echo $a['user'];
+            echo $a['kode'];
             echo '</td><td>';
-            echo '<img style="width:50px;background-color:#555" class="img img-responsive" src="file/image/thumb_'.$a['gambar'].'">';
+            echo $a['nama'];
             echo '</td><td>';
-            echo number_format($a['harga'],2);
-            echo '</td><td>';
-            echo $a['lamatr'];
-            echo '</td><td>';
-            echo $a['cekin'];
-            echo '</td><td>';
-            echo $a['cekout'];
-            echo '</td><td>';
-            echo number_format($a['total'],2);
+            echo $a['jenis'];
             echo '</td><td align="center">';
             echo '<div class="btn-group" role="group" aria-label="...">
-                <a class="btn btn-warning" href="?menu=transaksi&aksi=lihat&user=' .$a['user'].'&tanggal='.$a['tanggal'].'&halaman='.$nohalaman.'&cari='.$cari.'">
-                    <i class="fa fa-eye"></i> Lihat Resevasi</a>
+                <a class="btn btn-warning" href="module/dkbm/hapus.php?id=' .$a['kode'].'&halaman='.$nohalaman.'&cari='.$cari.'">
+                    <i class="glyphicon glyphicon-trash"></i></a>
+                <a class="btn btn-primary" href="?menu=dkbm&aksi=edit&id=' .$a['kode'].'&halaman='.$nohalaman.'&cari='.$cari.'">
+                    <i class="glyphicon glyphicon-edit"></i></a>
                 </div>';
             echo '</td></tr>';
             ++$no;
@@ -86,9 +82,9 @@ if (empty($_SESSION['login']) || $_SESSION['login'] != 'admin') {
 
         $total = null;
         if (!empty($cari)) {
-            $total = mysqli_query($con, "SELECT * FROM transaksi WHERE user LIKE '%$cari%' OR tanggal LIKE '%$cari%' GROUP BY user, tanggal");
+            $total = mysqli_query($con, "SELECT dkbm.*, jenispangan.nama as jenis FROM dkbm LEFT JOIN jenispangan ON dkbm.jenis = jenispangan.kode WHERE dkbm.nama LIKE '%$cari%' OR dkbm.kode LIKE '%$cari%'");
         } else {
-            $total = mysqli_query($con, 'SELECT * FROM transaksi GROUP BY user, tanggal');
+            $total = mysqli_query($con, 'SELECT dkbm.*, jenispangan.nama as jenis FROM dkbm LEFT JOIN jenispangan ON dkbm.jenis = jenispangan.kode');
         }
         $jumlahbaris = mysqli_num_rows($total);
         $jumlahhalaman = ceil($jumlahbaris / $batas);
@@ -97,7 +93,7 @@ if (empty($_SESSION['login']) || $_SESSION['login'] != 'admin') {
         echo "<nav aria-label='Page navigation'>
   <ul class='pagination'>";
         if ($nohalaman > 1) {
-            echo "<li><a href='".$_SERVER['PHP_SELF'].'?menu=transaksi&halaman='.($nohalaman - 1).'&cari='.$cari."' aria-label='Previous'>
+            echo "<li><a href='".$_SERVER['PHP_SELF'].'?menu=dkbm&halaman='.($nohalaman - 1).'&cari='.$cari."' aria-label='Previous'>
           <span aria-hidden='true'>&lt;&lt; Sebelumnya</span>
         </a>
       </li>";
@@ -114,14 +110,14 @@ if (empty($_SESSION['login']) || $_SESSION['login'] != 'admin') {
                 if ($halaman == $nohalaman) {
                     echo '<li><a><b>'.$halaman.'</b></a></li>';
                 } else {
-                    echo "<li><a href='".$_SERVER['PHP_SELF'].'?menu=transaksi&halaman='.$halaman.'&cari='.$cari."'>".$halaman.'</a></li>';
+                    echo "<li><a href='".$_SERVER['PHP_SELF'].'?menu=dkbm&halaman='.$halaman.'&cari='.$cari."'>".$halaman.'</a></li>';
                 }
                 $tampilhalaman = $halaman;
             }
         }
         if ($nohalaman < $jumlahhalaman) {
             echo "<li>
-            <a href='".$_SERVER['PHP_SELF'].'?menu=transaksi&halaman='.($nohalaman + 1).'&cari='.$cari."' aria-label='Next'>
+            <a href='".$_SERVER['PHP_SELF'].'?menu=dkbm&halaman='.($nohalaman + 1).'&cari='.$cari."' aria-label='Next'>
               <span aria-hidden='true'>Selanjutnya &gt;&gt;</span>
             </a>
           </li>";

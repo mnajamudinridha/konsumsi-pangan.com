@@ -3,23 +3,17 @@ include '../../vendor/autoload.php';
 include '../../fungsi/koneksi.php';
 include '../../fungsi/gambar.php';
 if (isset($_POST['kirim'])) {
-    $kode = $_POST['kode'];
-    $nama = $_POST['nama'];
+    $sample = $_POST['sample'];
+    $dkbm = $_POST['dkbm'];
+    $energi = $_POST['energi'];
+    $protein = $_POST['protein'];
+    $tanggal = $_POST['tanggal'];
 
     $cari = @$_GET['cari'];
     $halaman = @$_GET['halaman'];
-    $query = mysqli_query($con, "SELECT kode
-                             FROM kategori
-                             WHERE kode='$kode'");
-    $jumlah = mysqli_num_rows($query);
-    if ($jumlah > 0) {
-        echo 'Kode Sudah Ada';
-    } else {
-        mysqli_query($con, "INSERT INTO kategori
-                  (kode,nama)
-                  VALUES
-                  ('$kode','$nama')");
-
-        header('location:../../index.php?menu=kategori');
-    }
+    mysqli_query($con, "INSERT INTO konsumsi
+                (sample,dkbm,energi,protein,tanggal)
+                VALUES
+                ('$sample','$dkbm','$energi','$protein','$tanggal')");
+    header('location:../../index.php?menu=konsumsi');
 }

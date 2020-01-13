@@ -70,8 +70,6 @@ if (empty($_SESSION['login']) || $_SESSION['login'] != 'admin') {
             echo $a['tanggal'];
             echo '</td><td align="center">';
             echo '<div class="btn-group" role="group" aria-label="...">
-                <a class="btn btn-warning" href="module/halaman/hapus.php?id=' .$a['id'].'&halaman='.$nohalaman.'&cari='.$cari.'">
-                    <i class="glyphicon glyphicon-trash"></i></a>
                 <a class="btn btn-primary" href="?menu=halaman&aksi=edit&id=' .$a['id'].'&halaman='.$nohalaman.'&cari='.$cari.'">
                     <i class="glyphicon glyphicon-edit"></i></a>
                 </div>';

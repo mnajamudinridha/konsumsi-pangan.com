@@ -5,21 +5,20 @@ include '../../fungsi/gambar.php';
 if (isset($_POST['kirim'])) {
     $kode = $_POST['kode'];
     $nama = $_POST['nama'];
+    $jenis = $_POST['jenis'];
 
     $cari = @$_GET['cari'];
     $halaman = @$_GET['halaman'];
     $query = mysqli_query($con, "SELECT kode
-                             FROM kategori
+                             FROM dkbm
                              WHERE kode='$kode'");
     $jumlah = mysqli_num_rows($query);
     if ($jumlah > 0) {
-        echo 'Kode Sudah Ada';
+        mysqli_query($con, "UPDATE dkbm
+                        SET nama='$nama', jenis='$jenis'
+                        WHERE kode='$kode'");
+        header('location:../../index.php?menu=dkbm&halaman='.$halaman.'&cari='.$cari);
     } else {
-        mysqli_query($con, "INSERT INTO kategori
-                  (kode,nama)
-                  VALUES
-                  ('$kode','$nama')");
-
-        header('location:../../index.php?menu=kategori');
+        echo 'Kode yang Di Update Tidak Ada';
     }
 }

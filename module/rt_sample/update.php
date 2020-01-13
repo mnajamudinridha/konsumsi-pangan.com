@@ -3,7 +3,7 @@ include '../../vendor/autoload.php';
 include '../../fungsi/koneksi.php';
 include '../../fungsi/gambar.php';
 if (isset($_POST['kirim'])) {
-    $kode = $_POST['kode'];
+    $id = $_POST['id'];
     $nama = $_POST['nama'];
     $alamat = $_POST['alamat'];
     $jumlahorang = $_POST['jumlahorang'];
@@ -11,9 +11,9 @@ if (isset($_POST['kirim'])) {
 
     $cari = @$_GET['cari'];
     $halaman = @$_GET['halaman'];
-    $query = mysqli_query($con, "SELECT kode
+    $query = mysqli_query($con, "SELECT id
                              FROM rt_sample
-                             WHERE kode='$kode'");
+                             WHERE id='$id'");
     $jumlah = mysqli_num_rows($query);
     if ($jumlah > 0) {
         mysqli_query($con, "UPDATE rt_sample
@@ -21,7 +21,7 @@ if (isset($_POST['kirim'])) {
                                 alamat='$alamat',
                                 jumlahorang='$jumlahorang',
                                 lokasi='$lokasi'
-                        WHERE kode='$kode'");
+                        WHERE id='$id'");
         header('location:../../index.php?menu=rt_sample&halaman='.$halaman.'&cari='.$cari);
     } else {
         echo 'Kode yang Di Update Tidak Ada';

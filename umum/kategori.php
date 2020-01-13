@@ -7,7 +7,7 @@
         <?php
           $query = mysqli_query($con, 'SELECT * FROM kategori');
           while ($a = mysqli_fetch_array($query)) {
-              $query1 = mysqli_query($con, 'SELECT * FROM kamar WHERE kategori = "'.$a['kode'].'"');
+              $query1 = mysqli_query($con, 'SELECT * FROM barang WHERE kategori = "'.$a['kode'].'"');
               $jumlah = mysqli_num_rows($query1);
               echo '<li><a href="?menu=detailkateg&id='.$a['kode'].'">'.$a['nama'].'<span class="pull-right badge bg-blue">'.$jumlah.'</span></a></li>';
           }

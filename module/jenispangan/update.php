@@ -9,14 +9,14 @@ if (isset($_POST['kirim'])) {
     $cari = @$_GET['cari'];
     $halaman = @$_GET['halaman'];
     $query = mysqli_query($con, "SELECT kode
-                             FROM kategori
+                             FROM jenispangan
                              WHERE kode='$kode'");
     $jumlah = mysqli_num_rows($query);
     if ($jumlah > 0) {
-        mysqli_query($con, "UPDATE kategori
+        mysqli_query($con, "UPDATE jenispangan
                         SET nama='$nama'
                         WHERE kode='$kode'");
-        header('location:../../index.php?menu=kategori&halaman='.$halaman.'&cari='.$cari);
+        header('location:../../index.php?menu=jenispangan&halaman='.$halaman.'&cari='.$cari);
     } else {
         echo 'Kode yang Di Update Tidak Ada';
     }

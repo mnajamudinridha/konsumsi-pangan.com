@@ -11,7 +11,7 @@ include 'fungsi/koneksi.php';
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>Penginapan Qarina Banjarbaru</title>
+        <title>PPH Konsumsi Pangan</title>
         <!-- Bootstrap -->
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="bootstrap/css/font-awesome.min.css" rel="stylesheet">
@@ -45,17 +45,15 @@ include 'fungsi/koneksi.php';
     </head>
     <body>
           <div class="container"><br>
+            <div class="panel panel-primary">
+                    <img src="source/header.png" width="100%" class="img-responsive" style="max-height:200px;border-radius:4px;">
+            </div>
             <div class="row">
                 <div class="col-md-3">
-                  <?php include 'umum/alamat.php'; ?>
                   <?php include 'navigasi.php'; ?>
                 </div>
                 <div class="col-md-9">
-                  <div class="panel panel-primary">
-                    <img src="source/header.png" width="100%" class="img-responsive" style="max-height:147px;border-radius:4px;">
-                  </div>
                   <?php
-                  include 'umum/breadcrumbs.php';
                   if (isset($_GET['pesan'])) {
                       include 'umum/pesan.php';
                   }
@@ -69,7 +67,7 @@ include 'fungsi/koneksi.php';
             </div><!-- tutup dari row -->
             <footer class="footer">
   <div class="container">
-    <p class="text-muted" style="color:#ffffff">&copy 2019 Penginapan Qarina Banjarbaru</p>
+    <p class="text-muted" style="color:#ffffff">&copy 2020 PPH Konsumsi Pangan</p>
   </div>
 </footer>
             </div>

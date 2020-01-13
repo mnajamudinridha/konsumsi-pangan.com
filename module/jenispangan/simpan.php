@@ -4,25 +4,22 @@ include '../../fungsi/koneksi.php';
 include '../../fungsi/gambar.php';
 if (isset($_POST['kirim'])) {
     $kode = $_POST['kode'];
-    $wilayah = $_POST['wilayah'];
-    $desa = $_POST['desa'];
-    $argeokologi = $_POST['argeokologi'];
-    $ekonomi = $_POST['ekonomi'];
+    $nama = $_POST['nama'];
 
     $cari = @$_GET['cari'];
     $halaman = @$_GET['halaman'];
     $query = mysqli_query($con, "SELECT kode
-                             FROM lokasi
+                             FROM jenispangan
                              WHERE kode='$kode'");
     $jumlah = mysqli_num_rows($query);
     if ($jumlah > 0) {
         echo 'Kode Sudah Ada';
     } else {
-        mysqli_query($con, "INSERT INTO lokasi
-                  (kode,wilayah,desa,argeokologi,ekonomi)
+        mysqli_query($con, "INSERT INTO jenispangan
+                  (kode,nama)
                   VALUES
-                  ('$kode','$wilayah','$desa','$argeokologi','$ekonomi')");
+                  ('$kode','$nama')");
 
-        header('location:../../index.php?menu=lokasi');
+        header('location:../../index.php?menu=jenispangan');
     }
 }

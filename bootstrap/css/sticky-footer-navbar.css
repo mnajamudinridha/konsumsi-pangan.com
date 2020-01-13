@@ -138,7 +138,7 @@ a:hover {
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 60px;
-  background-color: #d66c14;
+  background-color: #05b105;
   border-radius: 4px;
 }
 
@@ -173,16 +173,16 @@ code {
 }
 
 .panel-primary {
-    border-color: #d66c14;
+    border-color: #05b105;
 }
 .panel-primary>.panel-heading {
-    background-color: #d66c14;
-    border-color: #ab550f;
+    background-color: #05b105;
+    border-color: #05b105;
 }
 
 .btn-primary:hover {
-    background-color: #ab550f;
-    border-color: #ab550f;
+    background-color: #05b105;
+    border-color: #05b105;
 }
 
 

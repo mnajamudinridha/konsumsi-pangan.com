@@ -48,20 +48,22 @@ if (empty($_SESSION['login']) || $_SESSION['login'] != 'admin') {
         $cari = $_GET['cari'];
     }
     if (!empty($cari)) {
-        $datas = mysqli_query($con, "SELECT * FROM rt_sample WHERE nama LIKE '%$cari%' OR kode LIKE '%$cari%'");
+        $datas = mysqli_query($con, "SELECT  rt_sample.*, lokasi.desa as lokasidesa FROM rt_sample LEFT JOIN lokasi ON rt_sample.lokasi = lokasi.kode WHERE nama LIKE '%$cari%' OR kode LIKE '%$cari%'");
         $jumlah = mysqli_num_rows($datas);
-        $data = mysqli_query($con, "SELECT * FROM rt_sample WHERE nama LIKE '%$cari%' OR kode LIKE '%$cari%' LIMIT $posisi, $batas");
+        $data = mysqli_query($con, "SELECT  rt_sample.*, lokasi.desa as lokasidesa FROM rt_sample LEFT JOIN lokasi ON rt_sample.lokasi = lokasi.kode WHERE nama LIKE '%$cari%' OR kode LIKE '%$cari%' LIMIT $posisi, $batas");
         echo "<a href='?menu=rt_sample'><h4 class='btn btn-danger'>Ditemukan $jumlah dengan Kata <u>$cari</u>, klik disini untuk CLEAR</h4></a><br><br>";
     } else {
-        $data = mysqli_query($con, "SELECT * FROM rt_sample LIMIT $posisi, $batas");
+        $data = mysqli_query($con, "SELECT rt_sample.*, lokasi.desa as lokasidesa FROM rt_sample LEFT JOIN lokasi ON rt_sample.lokasi = lokasi.kode LIMIT $posisi, $batas");
     }
     $jumlah = mysqli_num_rows($data);
     if ($jumlah > 0) {
         echo "<table class='table table-hover table-bordered'>";
-        echo "<tr><th>Kode Sample</th><th>Nama</th><th>ALamat</th><th>Jumlah Orang</th><th style='text-align:center'>Aksi</th></tr>";
+        echo "<tr><th>No</th><th>Desa</th><th>Nama</th><th>ALamat</th><th>Jumlah Orang</th><th style='text-align:center'>Aksi</th></tr>";
         while ($a = mysqli_fetch_array($data)) {
             echo '<tr><td>';
-            echo $a['kode'];
+            echo $no;
+            echo '</td><td>';
+            echo $a['lokasidesa'];
             echo '</td><td>';
             echo $a['nama'];
             echo '</td><td>';
@@ -70,9 +72,9 @@ if (empty($_SESSION['login']) || $_SESSION['login'] != 'admin') {
             echo $a['jumlahorang'];
             echo '</td><td align="center">';
             echo '<div class="btn-group" role="group" aria-label="...">
-                <a class="btn btn-warning" href="module/rt_sample/hapus.php?id=' .$a['kode'].'&halaman='.$nohalaman.'&cari='.$cari.'">
+                <a class="btn btn-warning" href="module/rt_sample/hapus.php?id=' .$a['id'].'&halaman='.$nohalaman.'&cari='.$cari.'">
                     <i class="glyphicon glyphicon-trash"></i></a>
-                <a class="btn btn-primary" href="?menu=rt_sample&aksi=edit&id=' .$a['kode'].'&halaman='.$nohalaman.'&cari='.$cari.'">
+                <a class="btn btn-primary" href="?menu=rt_sample&aksi=edit&id=' .$a['id'].'&halaman='.$nohalaman.'&cari='.$cari.'">
                     <i class="glyphicon glyphicon-edit"></i></a>
                 </div>';
             echo '</td></tr>';
@@ -82,7 +84,7 @@ if (empty($_SESSION['login']) || $_SESSION['login'] != 'admin') {
 
         $total = null;
         if (!empty($cari)) {
-            $total = mysqli_query($con, "SELECT * FROM rt_sample WHERE nama LIKE '%$cari%' OR kode LIKE '%$cari%'");
+            $total = mysqli_query($con, "SELECT  rt_sample.*, lokasi.desa as lokasidesa FROM rt_sample LEFT JOIN lokasi ON rt_sample.lokasi = lokasi.kode WHERE nama LIKE '%$cari%' OR kode LIKE '%$cari%'");
         } else {
             $total = mysqli_query($con, 'SELECT * FROM rt_sample');
         }

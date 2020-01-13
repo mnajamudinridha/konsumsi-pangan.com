@@ -58,7 +58,7 @@ if (empty($_SESSION['login']) || $_SESSION['login'] != 'admin') {
     $jumlah = mysqli_num_rows($data);
     if ($jumlah > 0) {
         echo "<table class='table table-hover table-bordered'>";
-        echo "<tr><th>Tahun</th><th>Kode Wilayah</th><th>Nama Wilayah</th><th>Jumlah Penduduk</th><th>UMR</th><th style='text-align:center'>Aksi</th></tr>";
+        echo "<tr><th>Tahun</th><th>Kode</th><th>Wilayah</th><th>Jumlah Penduduk</th><th>UMR</th><th>AKE</th><th>AKP</th><th style='text-align:center'>Aksi</th></tr>";
         while ($a = mysqli_fetch_array($data)) {
             echo '<tr><td>';
             echo $a['tahun'];
@@ -70,6 +70,10 @@ if (empty($_SESSION['login']) || $_SESSION['login'] != 'admin') {
             echo number_format($a['jumlahpenduduk'],2,",",".");
             echo '</td><td>';
             echo number_format($a['umr'],2,",",".");
+            echo '</td><td>';
+            echo $a['ake_konsumsi'];
+            echo '</td><td>';
+            echo $a['akp_konsumsi'];
             echo '</td><td align="center">';
             echo '<div class="btn-group" role="group" aria-label="...">
                 <a class="btn btn-warning" href="module/wilayah/hapus.php?id=' .$a['id'].'&halaman='.$nohalaman.'&cari='.$cari.'">

@@ -1,4 +1,3 @@
-<div class="panel panel-primary">
 <?php
 
 $menu = null;
@@ -38,20 +37,20 @@ if (isset($_GET['menu'])) {
                 <li><a href="index.php">Home</a></li>
                 <li class="active">Register</li>
         </ol>';
-    } elseif ($menu == 'detailkamar') {
+    } elseif ($menu == 'detailbarang') {
         echo '<ol class="breadcrumb">
                 <li><a href="index.php">Home</a></li>
-                <li class="active">Detail Kamar</li>
+                <li class="active">Detail Barang</li>
         </ol>';
     } elseif ($menu == 'detailinfo') {
         echo '<ol class="breadcrumb">
                 <li><a href="index.php">Home</a></li>
                 <li class="active">Detail Informasi</li>
         </ol>';
-    } elseif ($menu == 'sewakamar') {
+    } elseif ($menu == 'belibarang') {
         echo '<ol class="breadcrumb">
                 <li><a href="index.php">Home</a></li>
-                <li class="active">Resevasi Kamar</li>
+                <li class="active">Beli Barang</li>
         </ol>';
     } elseif ($menu == 'laporan') {
         echo '<ol class="breadcrumb">
@@ -61,22 +60,17 @@ if (isset($_GET['menu'])) {
     } elseif ($menu == 'detailkateg') {
         echo '<ol class="breadcrumb">
                 <li><a href="index.php">Home</a></li>
-                <li class="active">Detail Kamar Perkategori</li>
+                <li class="active">Detail Barang Perkategori</li>
         </ol>';
-    } elseif ($menu == 'detailsemuakamar') {
+    } elseif ($menu == 'detailsemuabarang') {
         echo '<ol class="breadcrumb">
                 <li><a href="index.php">Home</a></li>
-                <li class="active">Detail Semua Kamar</li>
+                <li class="active">Detail Semua Barang</li>
         </ol>';
     } elseif ($menu == 'checkout') {
         echo '<ol class="breadcrumb">
                <li><a href="index.php">Home</a></li>
                <li class="active">Checkout</li>
-       </ol>';
-    } elseif ($menu == 'konfirmasi') {
-        echo '<ol class="breadcrumb">
-               <li><a href="index.php">Home</a></li>
-               <li class="active">Konfirmasi</li>
        </ol>';
     } elseif ($menu == 'gagalbeli') {
         echo '<ol class="breadcrumb">
@@ -90,57 +84,38 @@ if (isset($_GET['menu'])) {
         if ($aksi == 'tambah') {
             echo '<ol class="breadcrumb">
                 <li><a href="index.php">Home</a></li>
-                <li><a href="?menu=admin">User</a></li>
+                <li><a href="?menu=admin">Admin</a></li>
                 <li class="active">Tambah</li>
               </ol>';
         } elseif ($aksi == 'edit') {
             echo '<ol class="breadcrumb">
                 <li><a href="index.php">Home</a></li>
-                <li><a href="?menu=admin">User</a></li>
+                <li><a href="?menu=admin">Admin</a></li>
                 <li class="active">Edit</li>
               </ol>';
         } else {
             echo '<ol class="breadcrumb">
                 <li><a href="index.php">Home</a></li>
-                <li class="active">User</li>
+                <li class="active">Admin</li>
               </ol>';
         }
-    }elseif ($menu == 'user') {
+    } elseif ($menu == 'barang') {
         if ($aksi == 'tambah') {
             echo '<ol class="breadcrumb">
                 <li><a href="index.php">Home</a></li>
-                <li><a href="?menu=user">Pelanggan</a></li>
+                <li><a href="?menu=barang">Barang</a></li>
                 <li class="active">Tambah</li>
               </ol>';
         } elseif ($aksi == 'edit') {
             echo '<ol class="breadcrumb">
                 <li><a href="index.php">Home</a></li>
-                <li><a href="?menu=user">Pelanggan</a></li>
+                <li><a href="?menu=barang">Barang</a></li>
                 <li class="active">Edit</li>
               </ol>';
         } else {
             echo '<ol class="breadcrumb">
                 <li><a href="index.php">Home</a></li>
-                <li class="active">Pelanggan</li>
-              </ol>';
-        }
-    } elseif ($menu == 'kamar') {
-        if ($aksi == 'tambah') {
-            echo '<ol class="breadcrumb">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="?menu=kamar">Kamar</a></li>
-                <li class="active">Tambah</li>
-              </ol>';
-        } elseif ($aksi == 'edit') {
-            echo '<ol class="breadcrumb">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="?menu=kamar">Kamar</a></li>
-                <li class="active">Edit</li>
-              </ol>';
-        } else {
-            echo '<ol class="breadcrumb">
-                <li><a href="index.php">Home</a></li>
-                <li class="active">Kamar</li>
+                <li class="active">Barang</li>
               </ol>';
         }
     } elseif ($menu == 'halaman') {
@@ -185,63 +160,13 @@ if (isset($_GET['menu'])) {
         if ($aksi == 'lihat') {
             echo '<ol class="breadcrumb">
                 <li><a href="index.php">Home</a></li>
-                <li><a href="?menu=transaksi">Reservasi</a></li>
+                <li><a href="?menu=transaksi">Transaksi</a></li>
                 <li class="active">Lihat</li>
               </ol>';
         } else {
             echo '<ol class="breadcrumb">
                 <li><a href="index.php">Home</a></li>
-                <li class="active">Reservasi</li>
-              </ol>';
-        }
-    } elseif ($menu == 'pembayaran') {
-        if ($aksi == 'lihat') {
-            echo '<ol class="breadcrumb">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="?menu=pembayaran">Pembayaran</a></li>
-                <li class="active">Lihat</li>
-              </ol>';
-        } elseif ($aksi == 'bayar') {
-            echo '<ol class="breadcrumb">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="?menu=pembayaran">Pembayaran</a></li>
-                <li class="active">Validasi Bayar</li>
-              </ol>';
-        } elseif ($aksi == 'kembali') {
-            echo '<ol class="breadcrumb">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="?menu=pembayaran">Pembayaran</a></li>
-                <li class="active">Validasi Kembali</li>
-              </ol>';
-        } else {
-            echo '<ol class="breadcrumb">
-                <li><a href="index.php">Home</a></li>
-                <li class="active">Pembayaran</li>
-              </ol>';
-        }
-    } elseif ($menu == 'pengembalian') {
-        if ($aksi == 'lihat') {
-            echo '<ol class="breadcrumb">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="?menu=pengembalian">Pengembalian</a></li>
-                <li class="active">Lihat</li>
-              </ol>';
-        } elseif ($aksi == 'bayar') {
-            echo '<ol class="breadcrumb">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="?menu=pengembalian">Pengembalian</a></li>
-                <li class="active">Validasi Bayar</li>
-              </ol>';
-        } elseif ($aksi == 'kembali') {
-            echo '<ol class="breadcrumb">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="?menu=pengembalian">Pengembalian</a></li>
-                <li class="active">Validasi Kembali</li>
-              </ol>';
-        } else {
-            echo '<ol class="breadcrumb">
-                <li><a href="index.php">Home</a></li>
-                <li class="active">Pengembalian</li>
+                <li class="active">Transaksi</li>
               </ol>';
         }
     } elseif ($menu == 'menu') {
@@ -274,5 +199,3 @@ if (isset($_GET['menu'])) {
                 <li class="active">Home</li>
         </ol>';
 }
-?>
-</div>

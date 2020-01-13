@@ -2,7 +2,7 @@
 
 if (isset($_GET['id'])) {
     echo '<div class="panel panel-primary">';
-    $query = mysqli_query($con, 'SELECT * FROM kamar WHERE kode="'.$_GET['id'].'"');
+    $query = mysqli_query($con, 'SELECT * FROM barang WHERE kode="'.$_GET['id'].'"');
     while ($a = mysqli_fetch_array($query)) {
         $query1 = mysqli_query($con, 'SELECT * FROM kategori WHERE kategori = "'.$a['kategori'].'"');
         echo '<div class="panel-heading">
@@ -26,7 +26,7 @@ if (isset($_GET['id'])) {
               <tr><td colspan="3">'.$a['ket'].'</td></tr>
               <tr>
                 <td colspan="3">
-                    <a href="?menu=belikamar&id='.$a['kode'].'" class="btn btn-primary pull-right" name="kirim">Beli</a>
+                    <a href="?menu=belibarang&id='.$a['kode'].'" class="btn btn-primary pull-right" name="kirim">Beli</a>
                 </td>
               </tr>
             </table>';
