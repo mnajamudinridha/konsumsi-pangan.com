@@ -6,8 +6,7 @@ if (isset($_POST['kirim'])) {
     $id = $_POST['id'];
     $sample = $_POST['sample'];
     $dkbm = $_POST['dkbm'];
-    $energi = $_POST['energi'];
-    $protein = $_POST['protein'];
+    $berat = $_POST['berat'];
     $tanggal = $_POST['tanggal'];
 
     $cari = @$_GET['cari'];
@@ -20,8 +19,7 @@ if (isset($_POST['kirim'])) {
         mysqli_query($con, "UPDATE konsumsi
                         SET sample='$sample',
                             dkbm='$dkbm',
-                            energi='$energi',
-                            protein='$protein',
+                            berat='$berat',
                             tanggal='$tanggal'
                         WHERE id='$id'");
         header('location:../../index.php?menu=konsumsi&halaman='.$halaman.'&cari='.$cari);

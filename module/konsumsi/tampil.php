@@ -82,7 +82,7 @@ if (empty($_SESSION['login']) || $_SESSION['login'] != 'admin') {
     $jumlah = mysqli_num_rows($data);
     if ($jumlah > 0) {
         echo "<table class='table table-hover table-bordered'>";
-        echo "<tr><th>No</th><th>Nama</th><th>Pangan</th><th>Jenis</th><th>Energi</th><th>Protein</th><th>Tanggal</th><th style='text-align:center'>Aksi</th></tr>";
+        echo "<tr><th>No</th><th>Nama</th><th>Pangan</th><th>Jenis</th><th>Berat (gram)</th><th>Tanggal</th><th style='text-align:center'>Aksi</th></tr>";
         while ($a = mysqli_fetch_array($data)) {
             echo '<tr><td>';
             echo $no;
@@ -93,10 +93,8 @@ if (empty($_SESSION['login']) || $_SESSION['login'] != 'admin') {
             echo '</td><td>';
             echo $a['jenisnama'];
             echo '</td><td>';
-            echo $a['energi'];
-            echo '/100g</td><td>';
-            echo $a['protein'];
-            echo '/100g</td><td>';
+            echo number_format($a['berat'],0,",",".");
+            echo '</td><td>';
             echo $a['tanggal'];
             echo '</td><td align="center">';
             echo '<div class="btn-group" role="group" aria-label="...">

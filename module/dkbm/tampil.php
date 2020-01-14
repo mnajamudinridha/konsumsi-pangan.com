@@ -58,7 +58,7 @@ if (empty($_SESSION['login']) || $_SESSION['login'] != 'admin') {
     $jumlah = mysqli_num_rows($data);
     if ($jumlah > 0) {
         echo "<table class='table table-hover table-bordered'>";
-        echo "<tr><th>No</th><th>Kode</th><th>Nama</th><th>Jenis</th><th style='text-align:center'>Aksi</th></tr>";
+        echo "<tr><th>No</th><th>Kode</th><th>Nama</th><th>Jenis</th><th>Energi/100g</th><th>Protein/100g</th><th style='text-align:center'>Aksi</th></tr>";
         while ($a = mysqli_fetch_array($data)) {
             echo '<tr><td>';
             echo $no;
@@ -68,6 +68,10 @@ if (empty($_SESSION['login']) || $_SESSION['login'] != 'admin') {
             echo $a['nama'];
             echo '</td><td>';
             echo $a['jenis'];
+            echo '</td><td>';
+            echo $a['energi'];
+            echo '</td><td>';
+            echo $a['protein'];
             echo '</td><td align="center">';
             echo '<div class="btn-group" role="group" aria-label="...">
                 <a class="btn btn-warning" href="module/dkbm/hapus.php?id=' .$a['kode'].'&halaman='.$nohalaman.'&cari='.$cari.'">

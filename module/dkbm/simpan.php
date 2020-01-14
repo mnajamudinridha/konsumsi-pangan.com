@@ -6,6 +6,8 @@ if (isset($_POST['kirim'])) {
     $kode = $_POST['kode'];
     $nama = $_POST['nama'];
     $jenis = $_POST['jenis'];
+    $energi = $_POST['energi'];
+    $protein = $_POST['protein'];
 
     $cari = @$_GET['cari'];
     $halaman = @$_GET['halaman'];
@@ -17,9 +19,9 @@ if (isset($_POST['kirim'])) {
         echo 'Kode Sudah Ada';
     } else {
         mysqli_query($con, "INSERT INTO dkbm
-                  (kode,nama,jenis)
+                  (kode,nama,jenis,energi,protein)
                   VALUES
-                  ('$kode','$nama','$jenis')");
+                  ('$kode','$nama','$jenis','$energi','$protein')");
 
         header('location:../../index.php?menu=dkbm');
     }

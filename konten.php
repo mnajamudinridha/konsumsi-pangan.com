@@ -60,40 +60,16 @@ if (isset($_GET['menu'])) {
         echo '</div>';
         echo '</div>';
         echo '</div>';
-    } elseif ($menu == 'detailkamar') {
+    } elseif ($menu == 'tingkatkecukupan') {
         echo '<div class="row">';
         echo '<div class="col-md-12">';
-        include 'umum/detailkamar.php';
+        include 'umum/tingkatkecukupan.php';
         echo '</div>';
         echo '</div>';
-    } elseif ($menu == 'sewakamar') {
+    } elseif ($menu == 'kontribusienergi') {
         echo '<div class="row">';
         echo '<div class="col-md-12">';
-        include 'umum/detailkamarbeli.php';
-        echo '</div>';
-        echo '</div>';
-    } elseif ($menu == 'detailkateg') {
-        echo '<div class="row">';
-        echo '<div class="col-md-12">';
-        include 'umum/detailkateg.php';
-        echo '</div>';
-        echo '</div>';
-    } elseif ($menu == 'detailsemuakamar') {
-        echo '<div class="row">';
-        echo '<div class="col-md-12">';
-        include 'umum/detailsemuakamar.php';
-        echo '</div>';
-        echo '</div>';
-    } elseif ($menu == 'checkout') {
-        echo '<div class="row">';
-        echo '<div class="col-md-12">';
-        include 'umum/checkout.php';
-        echo '</div>';
-        echo '</div>';
-    } elseif ($menu == 'konfirmasi') {
-        echo '<div class="row">';
-        echo '<div class="col-md-12">';
-        include 'umum/konfirmasi.php';
+        include 'umum/kontribusienergi.php';
         echo '</div>';
         echo '</div>';
     }

@@ -42,6 +42,14 @@ include 'fungsi/koneksi.php';
                 } ?>
         </select>
   </div>
+  <div class="form-group">
+    <label for="kode">Energi / 100g</label>
+    <input type="number" step="0.01" class="form-control" name="energi" placeholder="Energi (100g)" value="<?php echo @$a['energi']; ?>">
+  </div>
+  <div class="form-group">
+    <label for="kode">Protein / 100g</label>
+    <input type="number" step="0.01" class="form-control" name="protein" placeholder="Protein (100g)" value="<?php echo @$a['protein']; ?>">
+  </div>
   <button type="submit" class="btn btn-primary" name="kirim">Update</button>
 </form>
 
