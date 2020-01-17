@@ -26,7 +26,7 @@
             }
         } else {
             ?>
-            Menu Utama<br><br>
+            Menu Utama Baru<br><br>
             <a href="index.php" class="list-group-item">Beranda</a>
             <a href="index.php?menu=page&id=2" class="list-group-item">Tentang Gizi</a>
             <a href="index.php?menu=page&id=3" class="list-group-item">Tentang B2SA</a>
