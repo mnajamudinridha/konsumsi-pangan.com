@@ -26,7 +26,8 @@ if (empty($_SESSION['login']) || $_SESSION['login'] != 'admin') {
                 <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
                 </span>
             </div>
-        </form>
+        </form><br>
+        <button class="btn btn-success pull-right" onclick="print()">Print</button><br><br>
       </div>
     <?php
     include 'vendor/autoload.php';
@@ -57,7 +58,8 @@ if (empty($_SESSION['login']) || $_SESSION['login'] != 'admin') {
     }
     $jumlah = mysqli_num_rows($data);
     if ($jumlah > 0) {
-        echo "<table class='table table-hover table-bordered'>";
+        echo "<div id='printarea'>";
+        echo "<table class='table table-hover table-bordered' width='100%' border='1'>";
         echo "<tr><th>No</th><th>Kode</th><th>Nama</th><th style='text-align:center'>Aksi</th></tr>";
         while ($a = mysqli_fetch_array($data)) {
             echo '<tr><td>';
@@ -77,6 +79,7 @@ if (empty($_SESSION['login']) || $_SESSION['login'] != 'admin') {
             ++$no;
         }
         echo '</table>';
+        echo '</div>';
 
         $total = null;
         if (!empty($cari)) {

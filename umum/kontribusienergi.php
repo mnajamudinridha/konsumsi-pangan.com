@@ -35,10 +35,12 @@ if (isset($_POST['kirim'])) {
       </div>
     </div>
     </form>
+    <button class="btn btn-success pull-right" onclick="print()">Print</button><br><br><br>
   <?php
   // $datasets = null;
   // $labels = null;
-  echo "<table class='table table-responsive table-hover table-bordered' style='font-size:12px'>";
+  echo "<div id='printarea'>";
+  echo "<table class='table table-responsive table-hover table-bordered' style='font-size:12px' width='100%' border='1'>";
   echo "<tr><th rowspan=2>Kode</th><th rowspan=2>Nama</th><th rowspan=2>Jenis</th><th colspan=2>DKBM per 100 gram</th><th rowspan=2>RKEPOK</th><th rowspan=2>KEPOK</th></tr>";
   echo "<tr><th>Energi (KKal)</th><th>Protein (gram)</th></tr>";
   if($jenis == ""){
@@ -72,6 +74,8 @@ if (isset($_POST['kirim'])) {
       }
       echo "</table>";
 
+  echo '</div>';
+  echo '<div class="col-md-5 pull-right">Penanggung Jawab<br><br><br><br><br><br>Dinas Ketahanan Pangan Kab. Banjar</div>';
   echo '</div>';
   echo '</div>';
 } else {
