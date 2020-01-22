@@ -46,10 +46,11 @@ include 'fungsi/koneksi.php';
         function print(){
             var mywindow = window.open('', 'PRINT', 'height=600,width=800');
             mywindow.document.write('<html><head><title>' + document.title  + '</title>');
-            mywindow.document.write('</head><body >');
+            mywindow.document.write('</head><body>');
+            mywindow.document.write('<img src="source/kop.png" width="100%">');
             mywindow.document.write('<h1>' + document.title  + '</h1>');
             mywindow.document.write(document.getElementById("printarea").innerHTML);
-            mywindow.document.write('<div class="col-md-4 pull-right"><strong><br><br><br>Penanggung Jawab<br><br><br><br><br><br>Dinas Ketahanan Pangan Kab. Banjar</strong></div>');
+            mywindow.document.write('<div class="col-md-4 pull-right"><strong><br><br><br>Penanggung Jawab<br><br><br><br><br><br>Ir. H Eddy Hasby, MP</strong></div>');
             mywindow.document.write('</body></html>');
             mywindow.document.close(); // necessary for IE >= 10
             mywindow.focus(); // necessary for IE >= 10*/
@@ -61,6 +62,7 @@ include 'fungsi/koneksi.php';
     </head>
     <body>
           <div class="container"><br>
+          <img src="source/kop.png" style="display:none">
             <div class="panel panel-primary">
                     <img src="source/header.png" width="100%" class="img-responsive" style="max-height:200px;border-radius:4px;">
             </div>
